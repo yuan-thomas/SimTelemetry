@@ -26,6 +26,6 @@ jobs:
       # 3. Build & push Docker image
       - name: Build and push Docker image
         run: |
-          IMAGE_NAME=ghcr.io/${{ github.repository }}/app:latest
+          IMAGE_NAME="ghcr.io/$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]'):latest"
           docker build -t $IMAGE_NAME .
           docker push $IMAGE_NAME
