@@ -35,7 +35,6 @@ jobs:
       #    Common platform targets
       #    linux/amd64 → Standard x86 servers (most desktops, GitHub runners).
       #    linux/arm64 → Apple Silicon (M1/M2/M3 Macs), Raspberry Pi 4+, AWS Graviton.
-      #    linux/arm/v7 → Older Raspberry Pis.
       - name: Build and push Docker image
         run: |
           USERNAME=$(echo "$GITHUB_REPOSITORY_OWNER" | tr '[:upper:]' '[:lower:]')
@@ -43,6 +42,6 @@ jobs:
           IMAGE_NAME="ghcr.io/${USERNAME}/${REPO_NAME}:latest"
 
           docker buildx build \
-            --platform linux/amd64,linux/arm64,linux/arm/v7 \
+            --platform linux/amd64,linux/arm64/v8 \
             --push \
             -t "$IMAGE_NAME" .
