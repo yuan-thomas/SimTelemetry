@@ -11,7 +11,7 @@ COPY . .
 RUN npm run build
 
 # ---- Stage 2: Runtime ----
-FROM node:current
+FROM node:current-alpine
 WORKDIR /app
 
 # Copy everything (build + source)
