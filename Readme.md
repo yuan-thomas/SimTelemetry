@@ -1,19 +1,17 @@
-docker run --name forza-telemetry-js -it -p 20127:20127/udp -p 8050:5173 -p 8765:8765 -v d:/Projects/ForzaMotorsport/js:/workspace node bash
-docker run --name forza-telemetry-js -it -p 8050:5173 -p 8765:8765 -v d:/Projects/ForzaMotorsport/js:/workspace node bash
+# What is it?
+SimTelemtry is a React.JS based web application that captures Data Out from various sim racing platforms and produce real-time telemetry on devices of your choice.
 
-npm install -D @vitejs/plugin-react
+![Demo animation](docs/demo.gif)
 
-npm install react react-dom plotly.js-dist-min react-plotly.js
-npm install -D vite typescript @types/react @types/react-dom @vitejs/plugin-react
+# Supported games
+- Forza Motorsport 2023 (tested)
+- Forza Horizon 4/5 (tested)
+- EA F1 2024 (data capture tested, telemetry config created)
+- EA F1 2025 (data capture written but not tested, because I don't own this game)
 
+# Supported scenarios
 
-npm run dev
+# How to run
+docker run -d -p 8080:8080 -p 20127:20127/udp ghcr.io/yuan-thomas/simtelemetry
 
-
-Forza Horizon 4 to set up loopback exemption:
-CheckNetIsolation LoopbackExempt -a -n="Microsoft.SunriseBaseGame_8wekyb3d8bbwe"
-
-To Run Powershell:
-https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.5
-
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+# 

@@ -6,11 +6,11 @@ import { ConfigFile } from '../types';
 
 // Available game configurations
 const GAME_CONFIGS = {
-  'forza-motorsport': () => import('./games/forza-motorsport.json'),
-  'forza-horizon': () => import('./games/forza-horizon.json'),
-  'assetto-corsa': () => import('./games/assetto-corsa.json'),
-  'f1-2024': () => import('./games/f1-2024.json'),
-  'f1-2025': () => import('./games/f1-2025.json'),
+  'forza-motorsport': () => fetch('/config/games/forza-motorsport.json').then(r => r.json()),
+  'forza-horizon': () => fetch('/config/games/forza-horizon.json').then(r => r.json()),
+  'assetto-corsa': () => fetch('/config/games/assetto-corsa.json').then(r => r.json()),
+  'f1-2024': () => fetch('/config/games/f1-2024.json').then(r => r.json()),
+  'f1-2025': () => fetch('/config/games/f1-2025.json').then(r => r.json()),
 } as const;
 
 export type GameId = keyof typeof GAME_CONFIGS;
@@ -43,8 +43,7 @@ class ConfigManager {
     }
 
     try {
-      const configModule = await configLoader();
-      const config = configModule.default as ConfigFile;
+      const config = await configLoader() as ConfigFile;
       
       // Cache the loaded config
       this.configCache.set(gameId, config);
