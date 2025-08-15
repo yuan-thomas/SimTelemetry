@@ -54,7 +54,11 @@ npm run preview      # Preview production build
 
 ### WebSocket Servers
 ```bash
-node ws-hub.js       # Start WebSocket relay server on port 8765
+node developer/ws-hub-udp.js       # Start WebSocket relay server on port 8765
+```
+
+### Production
+```bash
 node server.js       # Start main server on port 8080
 ```
 
@@ -94,7 +98,6 @@ The application supports multiple racing games through a packet type system:
 
 ### Data Export/Import
 - **XLSX Format**: Primary format with packet types as worksheet tabs
-- **CSV Format**: Legacy support for backward compatibility
 - Each packet type exports to its own worksheet tab in Excel files
 
 ## Environment Variables
@@ -105,4 +108,3 @@ The application supports multiple racing games through a packet type system:
 ## File Formats
 
 - **XLSX**: Primary export/import format supporting multiple packet types as tabs
-- **CSV**: Legacy format support for backward compatibility (single packet type)

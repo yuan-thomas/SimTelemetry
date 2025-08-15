@@ -5,7 +5,7 @@
  */
 import React, { useRef, useEffect } from 'react';
 import { useTelemetry } from './telemetry';
-import { convertToXLSX, parseXLSXToFrames, downloadXLSX, generateTimestampedFilename, validateXLSXContent, convertCSVToFrames } from './utils';
+import { convertToXLSX, parseXLSXToFrames, downloadXLSX, generateTimestampedFilename, validateXLSXContent } from './utils';
 import { useGameConfig } from './hooks/useGameConfig';
 import { decoderManager, AVAILABLE_DECODERS } from './decoders';
 import { useConfig } from './SettingContext';
@@ -103,7 +103,7 @@ export const InfoPanel: React.FC = () => {
   };
 
   /**
-   * Trigger file selection dialog for XLSX/CSV import.
+   * Trigger file selection dialog for XLSX import.
    */
   const handleLoad = () => {
     fileInputRef.current?.click();
@@ -120,9 +120,8 @@ export const InfoPanel: React.FC = () => {
   };
 
   /**
-   * Handle XLSX/CSV file import and validation.
+   * Handle XLSX file import and validation.
    * Parses file content and replaces the current telemetry buffer.
-   * Supports both XLSX (preferred) and CSV (legacy) formats.
    */
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -159,22 +158,8 @@ export const InfoPanel: React.FC = () => {
         }
       };
       reader.readAsArrayBuffer(file);
-    } else if (fileExtension === 'csv') {
-      // Handle legacy CSV files
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const csvText = e.target?.result as string;
-          const frames = convertCSVToFrames(csvText, 1); // Default to packet type 1
-          replaceBuffer(frames);
-          alert(`Loaded ${frames.length} frames from CSV file (packet type 1)`);
-        } catch (error) {
-          alert('Error loading CSV file: ' + error);
-        }
-      };
-      reader.readAsText(file);
     } else {
-      alert('Unsupported file format. Please select an XLSX or CSV file.');
+      alert('Unsupported file format. Please select an XLSX file.');
       return;
     }
     
@@ -250,7 +235,7 @@ export const InfoPanel: React.FC = () => {
       <input
         ref={fileInputRef}
         type="file"
-        accept=".xlsx,.csv"
+        accept=".xlsx"
         style={{ display: 'none' }}
         onChange={handleFileChange}
       />
