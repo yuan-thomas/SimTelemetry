@@ -1,27 +1,32 @@
 {
 	"global_settings": {
-		"time_field": "CurrentRaceTime"
+		"time_field": "sessionTime"
 	},
 	"info_bar": [
 		{
 			"label": "Speed",
-			"field": "Speed"
+			"field": "speed",
+			"packet_type": 6
 		},
 		{
 			"label": "Gear",
-			"field": "Gear"
+			"field": "gear",
+			"packet_type": 6
 		},
 		{
 			"label": "RPM",
-			"field": "CurrentEngineRpm"
+			"field": "engineRPM",
+			"packet_type": 6
 		},
 		{
 			"label": "Lap Time",
-			"field": "CurrentLap"
+			"field": "currentLapTimeInMS",
+			"packet_type": 2
 		},
 		{
 			"label": "Position",
-			"field": "RacePosition"
+			"field": "carPosition",
+			"packet_type": 2
 		}
 	],
 	"tabs": [
@@ -32,26 +37,26 @@
 			"charts": [
 				{
 					"id": "abs_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Input: Accel / Brake / Steer",
+					"packet_type": 6,
+					"x_field": "sessionTime",
+					"title": "Input: Throttle / Brake / Steer",
 					"traces": [
 						{
-							"field": "Accel",
-							"name": "Accel",
+							"field": "throttle",
+							"name": "Throttle",
 							"color": "green",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "Brake",
+							"field": "brake",
 							"name": "Brake",
 							"color": "red",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "Steer",
+							"field": "steer",
 							"name": "Steer",
 							"color": "blue",
 							"yaxis": "y2",
@@ -60,11 +65,11 @@
 					],
 					"yaxis1_range": [
 						0,
-						260
+						1
 					],
 					"yaxis2_range": [
-						-130,
-						130
+						-1,
+						1
 					],
 					"height": 300,
 					"hovermode": "x unified",
@@ -72,29 +77,32 @@
 				},
 				{
 					"id": "engine_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Engine and Gear",
+					"packet_type": 6,
+					"x_field": "sessionTime",
+					"title": "Engine RPM and Speed",
 					"traces": [
 						{
-							"field": "Power",
-							"name": "Power (k)",
-							"scaling_factor": 1000,
+							"field": "engineRPM",
+							"name": "RPM",
 							"color": "red",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "Torque",
-							"name": "Torque",
+							"field": "speed",
+							"name": "Speed (km/h)",
 							"color": "blue",
-							"yaxis": "y",
+							"yaxis": "y2",
 							"show_box": false
 						}
 					],
+					"yaxis1_range": [
+						0,
+						20000
+					],
 					"yaxis2_range": [
 						0,
-						1
+						400
 					],
 					"height": 300,
 					"hovermode": "x unified",
@@ -109,33 +117,33 @@
 			"charts": [
 				{
 					"id": "tsa_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Tyre Normalized Slip Angle",
+					"packet_type": 13,
+					"x_field": "sessionTime",
+					"title": "Wheel Slip Angle",
 					"traces": [
 						{
-							"field": "TireSlipAngleFrontLeft",
+							"field": "wheelSlipAngleFL",
 							"name": "FL",
 							"color": "#e6194b",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "TireSlipAngleFrontRight",
+							"field": "wheelSlipAngleFR",
 							"name": "FR",
 							"color": "#3cb44b",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "TireSlipAngleRearLeft",
+							"field": "wheelSlipAngleRL",
 							"name": "RL",
 							"color": "#f58231",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "TireSlipAngleRearRight",
+							"field": "wheelSlipAngleRR",
 							"name": "RR",
 							"color": "#46f0f0",
 							"yaxis": "y",
@@ -143,8 +151,8 @@
 						}
 					],
 					"yaxis1_range": [
-						0,
-						2
+						-1,
+						1
 					],
 					"height": 200,
 					"hovermode": "x unified",
@@ -152,38 +160,42 @@
 				},
 				{
 					"id": "tcs_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Tyre Normalized Combined Slip",
+					"packet_type": 6,
+					"x_field": "sessionTime",
+					"title": "Tyre Surface Temperature",
 					"traces": [
 						{
-							"field": "TireCombinedSlipFrontLeft",
+							"field": "tyresSurfaceTemperatureFL",
 							"name": "FL",
 							"color": "#e6194b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "TireCombinedSlipFrontRight",
+							"field": "tyresSurfaceTemperatureFR",
 							"name": "FR",
 							"color": "#3cb44b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "TireCombinedSlipRearLeft",
+							"field": "tyresSurfaceTemperatureRL",
 							"name": "RL",
 							"color": "#f58231",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "TireCombinedSlipRearRight",
+							"field": "tyresSurfaceTemperatureRR",
 							"name": "RR",
 							"color": "#46f0f0",
 							"yaxis": "y",
 							"show_box": true
 						}
+					],
+					"yaxis1_range": [
+						50,
+						120
 					],
 					"height": 200,
 					"hovermode": "x unified",
@@ -191,38 +203,42 @@
 				},
 				{
 					"id": "tsr_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Tyre Normalized Slip Ratio",
+					"packet_type": 13,
+					"x_field": "sessionTime",
+					"title": "Wheel Slip Ratio",
 					"traces": [
 						{
-							"field": "TireSlipRatioFrontLeft",
+							"field": "wheelSlipRatioFL",
 							"name": "FL",
 							"color": "#e6194b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "TireSlipRatioFrontRight",
+							"field": "wheelSlipRatioFR",
 							"name": "FR",
 							"color": "#3cb44b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "TireSlipRatioRearLeft",
+							"field": "wheelSlipRatioRL",
 							"name": "RL",
 							"color": "#f58231",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "TireSlipRatioRearRight",
+							"field": "wheelSlipRatioRR",
 							"name": "RR",
 							"color": "#46f0f0",
 							"yaxis": "y",
 							"show_box": true
 						}
+					],
+					"yaxis1_range": [
+						-1,
+						1
 					],
 					"height": 200,
 					"hovermode": "x unified",
@@ -237,33 +253,33 @@
 			"charts": [
 				{
 					"id": "nst_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Normalized Suspension Travel",
+					"packet_type": 13,
+					"x_field": "sessionTime",
+					"title": "Suspension Position",
 					"traces": [
 						{
-							"field": "NormalizedSuspensionTravelFrontLeft",
+							"field": "suspensionPositionFL",
 							"name": "FL",
 							"color": "#e6194b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "NormalizedSuspensionTravelFrontRight",
+							"field": "suspensionPositionFR",
 							"name": "FR",
 							"color": "#3cb44b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "NormalizedSuspensionTravelRearLeft",
+							"field": "suspensionPositionRL",
 							"name": "RL",
 							"color": "#f58231",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "NormalizedSuspensionTravelRearRight",
+							"field": "suspensionPositionRR",
 							"name": "RR",
 							"color": "#46f0f0",
 							"yaxis": "y",
@@ -272,7 +288,7 @@
 					],
 					"yaxis1_range": [
 						0,
-						1
+						50
 					],
 					"height": 200,
 					"hovermode": "x unified",
@@ -280,33 +296,33 @@
 				},
 				{
 					"id": "nsv_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Normalized Suspension Velocity",
+					"packet_type": 0,
+					"x_field": "sessionTime",
+					"title": "Suspension Velocity",
 					"traces": [
 						{
-							"field": "NormalizedSuspensionVelocityFrontLeft",
+							"field": "suspensionVelocityFL",
 							"name": "FL",
 							"color": "#e6194b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "NormalizedSuspensionVelocityFrontRight",
+							"field": "suspensionVelocityFR",
 							"name": "FR",
 							"color": "#3cb44b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "NormalizedSuspensionVelocityRearLeft",
+							"field": "suspensionVelocityRL",
 							"name": "RL",
 							"color": "#f58231",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "NormalizedSuspensionVelocityRearRight",
+							"field": "suspensionVelocityRR",
 							"name": "RR",
 							"color": "#46f0f0",
 							"yaxis": "y",
@@ -316,7 +332,8 @@
 					"yaxis1_range": [
 						-5,
 						5
-					],					"height": 200,
+					],
+					"height": 200,
 					"hovermode": "x unified",
 					"legend_position": "top"
 				}
@@ -329,28 +346,35 @@
 			"charts": [
 				{
 					"id": "vel_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Velocity",
+					"packet_type": 13,
+					"x_field": "sessionTime",
+					"title": "Local Velocity",
 					"traces": [
 						{
-							"field": "VelocityX",
+							"field": "localVelocityX",
 							"name": "Lateral",
 							"color": "green",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "VelocityY",
-							"name": "Vetical",
+							"field": "localVelocityY",
+							"name": "Vertical",
 							"color": "blue",
+							"yaxis": "y",
+							"show_box": false
+						},
+						{
+							"field": "localVelocityZ",
+							"name": "Forward",
+							"color": "red",
 							"yaxis": "y",
 							"show_box": false
 						}
 					],
 					"yaxis1_range": [
-						-3,
-						3
+						-50,
+						50
 					],
 					"height": 200,
 					"hovermode": "x unified",
@@ -358,70 +382,33 @@
 				},
 				{
 					"id": "acc_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Acceleration",
+					"packet_type": 0,
+					"x_field": "sessionTime",
+					"title": "G-Forces",
 					"traces": [
 						{
-							"field": "AccelerationX",
+							"field": "gForceLateral",
 							"name": "Lateral",
 							"color": "green",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "AccelerationY",
-							"name": "Vetical",
+							"field": "gForceVertical",
+							"name": "Vertical",
 							"color": "blue",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "AccelerationZ",
-							"name": "Front",
+							"field": "gForceLongitudinal",
+							"name": "Longitudinal",
 							"color": "red",
-							"yaxis": "y2",
-							"show_box": false
-						}
-					],
-					"yaxis1_range": [
-						-10,
-						10
-					],
-					"yaxis2_range": [
-						-15,
-						15
-					],
-					"height": 200,
-					"hovermode": "x unified",
-					"legend_position": "top"
-				},
-				{
-					"id": "pvr_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Body Roll",
-					"traces": [
-						{
-							"field": "Pitch",
-							"name": "Pitch (+nosedown -noseup)",
-							"color": "red",
-							"yaxis": "y",
-							"show_box": false
-						},
-						{
-							"field": "Roll",
-							"name": "Roll (+left -right)",
-							"color": "green",
 							"yaxis": "y",
 							"show_box": false
 						}
 					],
 					"yaxis1_range": [
-						-0.1,
-						0.1
-					],
-					"yaxis2_range": [
 						-5,
 						5
 					],
@@ -430,29 +417,72 @@
 					"legend_position": "top"
 				},
 				{
-					"id": "angvel_chart",
-					"packet_type": 1,
-					"x_field": "CurrentRaceTime",
-					"title": "Body Roll (Angular) Velocity",
+					"id": "pvr_chart",
+					"packet_type": 0,
+					"x_field": "sessionTime",
+					"title": "Body Rotation",
 					"traces": [
 						{
-							"field": "AngularVelocityX",
-							"name": "Lateral",
+							"field": "pitch",
+							"name": "Pitch",
+							"color": "red",
+							"yaxis": "y",
+							"show_box": false
+						},
+						{
+							"field": "roll",
+							"name": "Roll",
 							"color": "green",
 							"yaxis": "y",
 							"show_box": false
 						},
 						{
-							"field": "AngularVelocityZ",
-							"name": "Front",
+							"field": "yaw",
+							"name": "Yaw",
+							"color": "blue",
+							"yaxis": "y",
+							"show_box": false
+						}
+					],
+					"yaxis1_range": [
+						-3.15,
+						3.15
+					],
+					"height": 200,
+					"hovermode": "x unified",
+					"legend_position": "top"
+				},
+				{
+					"id": "angvel_chart",
+					"packet_type": 13,
+					"x_field": "sessionTime",
+					"title": "Angular Velocity",
+					"traces": [
+						{
+							"field": "angularVelocityX",
+							"name": "X-axis",
+							"color": "green",
+							"yaxis": "y",
+							"show_box": false
+						},
+						{
+							"field": "angularVelocityY",
+							"name": "Y-axis",
+							"color": "blue",
+							"yaxis": "y",
+							"show_box": false
+						},
+						{
+							"field": "angularVelocityZ",
+							"name": "Z-axis",
 							"color": "red",
 							"yaxis": "y",
 							"show_box": false
 						}
 					],
 					"yaxis1_range": [
-						-0.15,
-						0.15
+						-5,
+						5
 					],
 					"height": 200,
 					"hovermode": "x unified",

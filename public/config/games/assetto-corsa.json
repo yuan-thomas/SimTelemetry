@@ -20,7 +20,12 @@
 		},
 		{
 			"label": "Lap Time",
-			"field": "iCurrentTime",
+			"field": "CurrentTime",
+			"packet_type": 2
+		},
+		{
+			"label": "Best Time",
+			"field": "BestTime",
 			"packet_type": 2
 		},
 		{
@@ -196,34 +201,34 @@
 					"legend_position": "top"
 				},
 				{
-					"id": "tyre_pressure_chart",
+					"id": "slipRatio",
 					"packet_type": 1,
 					"x_field": "t",
-					"title": "Tyre Pressure",
+					"title": "Slip Ratio",
 					"traces": [
 						{
-							"field": "wheelsPressureFL",
+							"field": "slipRatioFL",
 							"name": "FL",
 							"color": "#e6194b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "wheelsPressureFR",
+							"field": "slipRatioFR",
 							"name": "FR",
 							"color": "#3cb44b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "wheelsPressureRL",
+							"field": "slipRatioRL",
 							"name": "RL",
 							"color": "#f58231",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "wheelsPressureRR",
+							"field": "slipRatioRR",
 							"name": "RR",
 							"color": "#46f0f0",
 							"yaxis": "y",
@@ -235,34 +240,34 @@
 					"legend_position": "top"
 				},
 				{
-					"id": "tyre_temperature_chart",
+					"id": "slipAngle",
 					"packet_type": 1,
 					"x_field": "t",
-					"title": "Tyre Core Temperature",
+					"title": "Slip Angle",
 					"traces": [
 						{
-							"field": "tyreCoreTemperatureFL",
+							"field": "slipAngleFL",
 							"name": "FL",
 							"color": "#e6194b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "tyreCoreTemperatureFR",
+							"field": "slipAngleFR",
 							"name": "FR",
 							"color": "#3cb44b",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "tyreCoreTemperatureRL",
+							"field": "slipAngleRL",
 							"name": "RL",
 							"color": "#f58231",
 							"yaxis": "y",
 							"show_box": true
 						},
 						{
-							"field": "tyreCoreTemperatureRR",
+							"field": "slipAngleRR",
 							"name": "RR",
 							"color": "#46f0f0",
 							"yaxis": "y",
@@ -363,6 +368,44 @@
 					"legend_position": "top"
 				},
 				{
+					"id": "suspensionVelocity",
+					"packet_type": 1,
+					"x_field": "t",
+					"title": "Suspension Velocity",
+					"traces": [
+						{
+							"field": "suspensionVelocityFL",
+							"name": "FL",
+							"color": "#e6194b",
+							"yaxis": "y",
+							"show_box": true
+						},
+						{
+							"field": "suspensionVelocityFR",
+							"name": "FR",
+							"color": "#3cb44b",
+							"yaxis": "y",
+							"show_box": true
+						},
+						{
+							"field": "suspensionVelocityRL",
+							"name": "RL",
+							"color": "#f58231",
+							"yaxis": "y",
+							"show_box": true
+						},
+						{
+							"field": "suspensionVelocityRR",
+							"name": "RR",
+							"color": "#46f0f0",
+							"yaxis": "y",
+							"show_box": true
+						}
+					],
+					"height": 200,
+					"hovermode": "x unified",
+					"legend_position": "top"
+				}				{
 					"id": "wheel_load_chart",
 					"packet_type": 1,
 					"x_field": "t",

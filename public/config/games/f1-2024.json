@@ -117,7 +117,7 @@
 			"charts": [
 				{
 					"id": "tsa_chart",
-					"packet_type": 0,
+					"packet_type": 13,
 					"x_field": "sessionTime",
 					"title": "Wheel Slip Angle",
 					"traces": [
@@ -203,7 +203,7 @@
 				},
 				{
 					"id": "tsr_chart",
-					"packet_type": 0,
+					"packet_type": 13,
 					"x_field": "sessionTime",
 					"title": "Wheel Slip Ratio",
 					"traces": [
@@ -253,7 +253,7 @@
 			"charts": [
 				{
 					"id": "nst_chart",
-					"packet_type": 0,
+					"packet_type": 13,
 					"x_field": "sessionTime",
 					"title": "Suspension Position",
 					"traces": [
@@ -288,7 +288,7 @@
 					],
 					"yaxis1_range": [
 						0,
-						1
+						50
 					],
 					"height": 200,
 					"hovermode": "x unified",
@@ -346,7 +346,7 @@
 			"charts": [
 				{
 					"id": "vel_chart",
-					"packet_type": 0,
+					"packet_type": 13,
 					"x_field": "sessionTime",
 					"title": "Local Velocity",
 					"traces": [
@@ -454,7 +454,7 @@
 				},
 				{
 					"id": "angvel_chart",
-					"packet_type": 0,
+					"packet_type": 13,
 					"x_field": "sessionTime",
 					"title": "Angular Velocity",
 					"traces": [

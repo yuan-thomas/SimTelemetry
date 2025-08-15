@@ -1,6 +1,9 @@
 docker run --name forza-telemetry-js -it -p 20127:20127/udp -p 8050:5173 -p 8765:8765 -v d:/Projects/ForzaMotorsport/js:/workspace node bash
 docker run --name forza-telemetry-js -it -p 8050:5173 -p 8765:8765 -v d:/Projects/ForzaMotorsport/js:/workspace node bash
 
+#To tune configs
+docker run --pull always -d -v D:\Projects\ForzaMotorsport\js\public\config:/app/dist/config -p 8080:8080 -p 20127:20127/udp ghcr.io/yuan-thomas/simtelemetry
+
 npm install -D @vitejs/plugin-react
 
 npm install react react-dom plotly.js-dist-min react-plotly.js
