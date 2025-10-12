@@ -405,7 +405,8 @@
 					"height": 200,
 					"hovermode": "x unified",
 					"legend_position": "top"
-				}				{
+				},
+				{
 					"id": "wheel_load_chart",
 					"packet_type": 1,
 					"x_field": "t",
