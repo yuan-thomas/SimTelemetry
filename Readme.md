@@ -4,6 +4,7 @@ SimTelemtry is a Plotly.JS based web application that captures Data Out from var
 ![Demo animation](docs/demo.gif)
 
 # Supported games
+- Assetto Corsa, Competizione and Evo (tested)
 - Forza Motorsport 2023 (tested)
 - Forza Horizon 4/5 (tested)
 - EA F1 2024 (tested, feedbacks wanted)
